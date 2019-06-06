@@ -16,6 +16,7 @@ An easily configurable Docker image for running an Electrum server.
 docker run \
   --name=electrumx \
   --net=host \
+  --ulimit nofile=5120:5120 \
   -t -d \
   -v ~/electrumx:/data \
   -e DAEMON_URL=http://user:pass@127.0.01:32369 \
