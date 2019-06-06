@@ -13,7 +13,15 @@ An easily configurable Docker image for running an Electrum server.
 ## Usage
 **Denarius**
 ```
-docker run --net=host --name=electrumx --rm -t -d -v ~/electrumx:/data -e DAEMON_URL=http://denariusrpc:password -p 50002:50002 buzzkillb/docker-electrumx
+docker run \
+  --name=electrumx \
+  --net=host \
+  -t -d \
+  -v ~/electrumx:/data \
+  -e DAEMON_URL=http://user:pass@127.0.01:32369 \
+  -e COIN=Denarius \
+  -p 50002:50002 \
+  buzzkillb/docker-electrumx
 ```
 ```
 docker run --net=host --name=denariusd --rm -t -d -p 33369:33369 -p 32369:32369 -v ~/.denarius:/data -P buzzkillb/denariusd
