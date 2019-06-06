@@ -25,7 +25,14 @@ docker run \
   buzzkillb/docker-electrumx
 ```
 ```
-docker run --net=host --name=denariusd --rm -t -d -p 33369:33369 -p 32369:32369 -v ~/.denarius:/data -P buzzkillb/denariusd
+docker run \
+  --net=host \
+  --name=denariusd \
+  -t -d \
+  -p 33369:33369 \
+  -p 32369:32369 \
+  -v ~/.denarius:/data \
+  -P buzzkillb/denariusd
 ```
 
 Below is original readme
