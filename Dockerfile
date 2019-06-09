@@ -1,4 +1,6 @@
-FROM python:3.7-alpine3.7
+
+FROM arm32v7/python:3.7.2-alpine3.7
+COPY qemu-arm-static /usr/bin
 LABEL maintainer="Luke Childs <lukechilds123@gmail.com>"
 
 COPY ./bin /usr/local/bin
