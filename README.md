@@ -11,7 +11,7 @@
 An easily configurable Docker image for running an Electrum server.
 
 ## Usage
-**Denarius**
+**Denarius ARM**
 ```
 docker run \
   --name=electrumx \
@@ -22,7 +22,7 @@ docker run \
   -e DAEMON_URL=http://user:pass@127.0.01:32369 \
   -e COIN=Denarius \
   -p 50002:50002 \
-  buzzkillb/docker-electrumx
+  buzzkillb/docker-electrumx:armhf
 ```
 ```
 docker run \
@@ -32,7 +32,7 @@ docker run \
   -p 33369:33369 \
   -p 32369:32369 \
   -v ~/.denarius:/data \
-  -P buzzkillb/denariusd
+  -P buzzkillb/denariusd:armhf
 ```
 
 Below is original readme
