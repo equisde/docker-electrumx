@@ -6,7 +6,7 @@ COPY ./VERSION /tmp
 
 RUN VERSION=$(cat /tmp/VERSION) && \
     chmod a+x /usr/local/bin/* && \
-    apt-get install -yq libsnappy-dev zlib1g-dev libbz2-dev libgflags-dev && \
+    apt-get install -yq tar libsnappy-dev zlib1g-dev libbz2-dev libgflags-dev && \
     wget https://leveldb.googlecode.com/files/leveldb-1.9.0.tar.gz
     tar -xzf leveldb-1.9.0.tar.gz
     cd leveldb-1.9.0
