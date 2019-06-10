@@ -1,4 +1,4 @@
-FROM python:3.7-alpine3.7
+FROM python:3.7.3-stretch
 LABEL maintainer="Luke Childs <lukechilds123@gmail.com>"
 
 COPY ./bin /usr/local/bin
@@ -6,13 +6,15 @@ COPY ./VERSION /tmp
 
 RUN VERSION=$(cat /tmp/VERSION) && \
     chmod a+x /usr/local/bin/* && \
-    apk add --no-cache git build-base openssl && \
-    apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community leveldb-dev && \
+    apt-get install -yq libsnappy-dev zlib1g-dev libbz2-dev libgflags-dev && \
+    wget https://launchpad.net/ubuntu/+archive/primary/+files/leveldb_1.20.orig.tar.gz
+    tar -xzvf leveldb_1.20.orig.tar.gz
+    pushd leveldb-1.20 && make && sudo mv out-shared/libleveldb.* /usr/local/lib && sudo cp -R include/leveldb /usr/local/include && sudo ldconfig && popd
     pip install aiohttp aiorpcX ecdsa plyvel pycodestyle pylru pytest-asyncio pytest-cov Sphinx tribus-hash websocket && \
     git clone -b $VERSION https://github.com/kyuupichan/electrumx.git && \
     cd electrumx && \
     python setup.py install && \
-    apk del git build-base && \
+    apt remove git build-base && \
     rm -rf /tmp/*
 
 VOLUME ["/data"]
