@@ -7,9 +7,15 @@ COPY ./VERSION /tmp
 RUN VERSION=$(cat /tmp/VERSION) && \
     chmod a+x /usr/local/bin/* && \
     apt-get install -yq libsnappy-dev zlib1g-dev libbz2-dev libgflags-dev && \
-    wget https://launchpad.net/ubuntu/+archive/primary/+files/leveldb_1.20.orig.tar.gz
-    tar -xzvf leveldb_1.20.orig.tar.gz
-    pushd leveldb-1.20 && make && sudo mv out-shared/libleveldb.* /usr/local/lib && sudo cp -R include/leveldb /usr/local/include && sudo ldconfig && popd
+    wget https://leveldb.googlecode.com/files/leveldb-1.9.0.tar.gz
+    tar -xzf leveldb-1.9.0.tar.gz
+    cd leveldb-1.9.0
+    make
+    mv libleveldb.* /usr/local/lib
+    include
+    cp -R leveldb /usr/local/include
+    ldconfig 
+    cd ~
     pip install aiohttp aiorpcX ecdsa plyvel pycodestyle pylru pytest-asyncio pytest-cov Sphinx tribus-hash websocket && \
     git clone -b $VERSION https://github.com/kyuupichan/electrumx.git && \
     cd electrumx && \
