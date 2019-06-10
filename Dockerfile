@@ -6,7 +6,7 @@ COPY ./VERSION /tmp
 
 RUN VERSION=$(cat /tmp/VERSION) && \
     chmod a+x /usr/local/bin/* && \
-    apt -qq update
+    apt -qq update && \
     apt install -yq libsnappy-dev zlib1g-dev libbz2-dev libgflags-dev && \
     git clone https://github.com/google/leveldb.git && \
     cd leveldb/ && \
