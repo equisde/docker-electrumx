@@ -6,16 +6,13 @@ COPY ./VERSION /tmp
 
 RUN VERSION=$(cat /tmp/VERSION) && \
     chmod a+x /usr/local/bin/* && \
-    apt-get install -yq tar libsnappy-dev zlib1g-dev libbz2-dev libgflags-dev && \
-    wget https://leveldb.googlecode.com/files/leveldb-1.9.0.tar.gz
-    tar -xzf leveldb-1.9.0.tar.gz
-    cd leveldb-1.9.0
+    apt-get install -yq libsnappy-dev zlib1g-dev libbz2-dev libgflags-dev && \
+    git clone https://github.com/google/leveldb.git
+    cd leveldb/
     make
-    mv libleveldb.* /usr/local/lib
-    include
-    cp -R leveldb /usr/local/include
-    ldconfig 
-    cd ~
+    cd include/
+    scp -r leveldb /usr/local/include/
+    ldconfig
     pip install aiohttp aiorpcX ecdsa plyvel pycodestyle pylru pytest-asyncio pytest-cov Sphinx tribus-hash websocket && \
     git clone -b $VERSION https://github.com/kyuupichan/electrumx.git && \
     cd electrumx && \
