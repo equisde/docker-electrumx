@@ -7,12 +7,12 @@ COPY ./VERSION /tmp
 RUN VERSION=$(cat /tmp/VERSION) && \
     chmod a+x /usr/local/bin/* && \
     apt-get install -yq libsnappy-dev zlib1g-dev libbz2-dev libgflags-dev && \
-    git clone https://github.com/google/leveldb.git
-    cd leveldb/
-    make
-    cd include/
-    scp -r leveldb /usr/local/include/
-    ldconfig
+    git clone https://github.com/google/leveldb.git && \
+    cd leveldb/ && \
+    make && \
+    cd include/ && \
+    scp -r leveldb /usr/local/include/ && \
+    ldconfig && \
     pip install aiohttp aiorpcX ecdsa plyvel pycodestyle pylru pytest-asyncio pytest-cov Sphinx tribus-hash websocket && \
     git clone -b $VERSION https://github.com/kyuupichan/electrumx.git && \
     cd electrumx && \
