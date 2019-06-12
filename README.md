@@ -10,6 +10,9 @@
 
 An easily configurable Docker image for running an Electrum server.
 
+setup guide  
+https://denariustalk.org/index.php?/topic/282-electrumx-server-setup-guide-docker/
+
 ## Usage
 **Denarius**
 ```
