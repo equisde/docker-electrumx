@@ -37,6 +37,25 @@ docker run \
   -v ~/.denarius:/data \
   -P buzzkillb/denariusd:latest
 ```
+## Run History Compaction on Denarius (stop electrumx server first)  
+```
+docker run \
+  --name=electrumx-compact \
+  --net=host \
+  --ulimit nofile=5120:5120 \
+  -t -d \
+  -v ~/electrumx:/data \
+  -e DAEMON_URL=http://user:pass@127.0.01:32369 \
+  -e COIN=Denarius \
+  -p 50002:50002 \
+  buzzkillb/docker-electrumx:dcompact
+  ```
+crontab (daily compaction cronjob)  
+```
+0 0 * * * docker stop electrumx >/dev/null 2>&1
+1 0 * * * docker start electrumx-compact >/dev/null 2>&1
+6 0 * * * docker start electrumx >/dev/null 2>&1
+```
 
 Below is original readme
 ```
