@@ -8,4 +8,5 @@ export COIN=Denarius
 export DB_ENGINE=leveldb
 
 exec /electrumx/electrumx_compact_history
+exit
 exec /electrumx/electrumx_server
