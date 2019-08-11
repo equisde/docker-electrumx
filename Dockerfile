@@ -9,7 +9,7 @@ RUN VERSION=$(cat /tmp/VERSION) && \
     apk add --no-cache git build-base openssl && \
     apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community leveldb-dev && \
     pip install aiohttp aiorpcX ecdsa plyvel pycodestyle pylru pytest-asyncio pytest-cov Sphinx tribus-hash websockets && \
-    git clone -b $VERSION https://github.com/kyuupichan/electrumx.git && \
+    git clone -b $VERSION https://github.com/equisde/electrumx.git && \
     cd electrumx && \
     python setup.py install && \
     apk del git build-base && \
